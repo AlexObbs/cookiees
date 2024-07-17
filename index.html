@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Cookie Consent by Insites -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+</head>
+
+<body>
+    <!-- Your website content -->
+    <p style="padding: 300px;"> YOUR WEBSITE CONTENT HERE</p>
+
+    <!-- Initialize Cookie Consent -->
+    <script>
+        window.addEventListener("load", function () {
+            window.cookieconsent.initialise({
+                "palette": {
+                    "popup": {
+                        "background": "#000"
+                    },
+                    "button": {
+                        "background": "#f1d600"
+                    }
+                },
+                "theme": "classic",
+                "type": "opt-in", // Changes the banner to include an opt-in feature
+                "content": {
+                    "message": "This website uses cookies to ensure you get the best experience on our website.",
+                    "dismiss": "Accept",
+                    "deny": "Decline",
+                    "link": "Learn more",
+                    "href": "privacy.html" // Make sure this links to your privacy policy
+                },
+                "onInitialise": function (status) {
+                    manageCookies(status == cookieconsent.status.allow);
+                },
+                "onStatusChange": function (status, chosenBefore) {
+                    manageCookies(status == cookieconsent.status.allow);
+                },
+                "onRevokeChoice": function () {
+                    manageCookies(false);
+                }
+            })
+        });
+
+        // Function to enable or disable cookies based on user choice
+        function manageCookies(allow) {
+            if (allow) {
+                // Code to enable cookies
+            } else {
+                // Code to disable cookies
+                // For example, remove all non-essential cookies
+                document.cookie.split(";").forEach(function (c) {
+                    document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>
